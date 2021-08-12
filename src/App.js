@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import CreateWork from './components/CreateWork';
+import { SetsContext, WorkoutsContext } from './context/InputContext';
 
 function App() {
+  const[inputList, setInputList] = useState([{reps: "0", weight: "0", rest: "0"}]);
+  const[inputWork, setInputWork] = useState([{work: ""}]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <SetsContext.Provider value={{ inputList, setInputList }}>
+      <WorkoutsContext.Provider value={{ inputWork, setInputWork }}>
+        <CreateWork />
+      </WorkoutsContext.Provider>
+      </SetsContext.Provider>
+    </>
   );
 }
 
